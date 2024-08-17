@@ -33,9 +33,8 @@ class Car implements Prototype {
   }
 }
 
-
-const prototypeCar = new Car("Toyota", ["Ram", "Shyam", "Daisy"], 10, "Purple");
+const prototypeCar = new Car('Toyota', ['Ram', 'Shyam', 'Daisy'], 10, 'Purple');
 
 const car1 = prototypeCar.clone();
-car1.name = "Toyota 1"
+car1.name = 'Toyota 1';
 car1.accelerate();

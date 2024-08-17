@@ -7,6 +7,17 @@
   "author": "Gaurav Panchal <gkp.125@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "gts": "^5.3.1",
+    "@types/node": "20.12.7"
+  },
+  "scripts": {
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "yarn run compile",
+    "pretest": "yarn run compile",
+    "posttest": "yarn run lint"
   }
 }
