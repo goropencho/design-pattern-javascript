@@ -1,32 +1,42 @@
 interface Shape {
-  computeArea(): void;
+  computeArea(): number;
 }
 
 class Circle implements Shape {
-  public computeArea(): void {
-    console.log('I compute stuff');
+  constructor(private radius: number) {}
+  public computeArea(): number {
+    return Math.PI * this.radius ** 2;
   }
 }
 
 class Square implements Shape {
-  public computeArea(): void {
-    console.log('I compute stuff');
+  constructor(private sideLength: number) {}
+  public computeArea(): number {
+    return this.sideLength ** 2;
   }
 }
 
+type ShapeType = 'Circle' | 'Square';
+
 class ShapeInstanceFactory {
-  getShapeInstance(value: String) {
-    if (value === 'Cicle') {
-      return new Circle();
-    } else if (value === 'Square') {
-      return new Square();
+  static getShapeInstance(type: ShapeType, size: number) {
+    switch (type) {
+      case 'Circle': {
+        return new Circle(size);
+      }
+      case 'Square': {
+        return new Square(size);
+      }
+      default:
+        throw new Error(`Unsupported shape type: ${type}`);
     }
-    return null;
   }
 }
 
 (() => {
-  const shapeInstance = new ShapeInstanceFactory();
-  const circleInstance = shapeInstance.getShapeInstance('Circle');
-  circleInstance?.computeArea();
+  const circle = ShapeInstanceFactory.getShapeInstance('Circle', 10);
+  console.log('Circle Area: ', circle.computeArea());
+
+  const square = ShapeInstanceFactory.getShapeInstance('Square', 10);
+  console.log('Square Area: ', square.computeArea());
 })();
